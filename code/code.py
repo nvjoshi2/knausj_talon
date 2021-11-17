@@ -40,6 +40,7 @@ extension_lang_map = {
     ".h": "c",
     ".hpp": "cplusplus",
     ".java": "java",
+    ".kt": "kotlin",
     ".js": "javascript",
     ".jsx": "javascript",
     ".json": "json",
@@ -120,6 +121,9 @@ class Actions:
 
     def code_operator_indirection():
         """code_operator_indirection"""
+
+    def kotlin_give_type(type1: str):
+        """Inserts kotlin type """
 
     def code_operator_address_of():
         """code_operator_address_of (e.g., C++ & op)"""
