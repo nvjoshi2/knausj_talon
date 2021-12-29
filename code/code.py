@@ -1,10 +1,10 @@
 from talon import Context, Module, actions, app, imgui, registry, settings
-
 ctx = Context()
 mod = Module()
 mod.list("code_functions", desc="List of functions for active language")
 mod.list("code_types", desc="List of types for active language")
 mod.list("code_libraries", desc="List of libraries for active language")
+mod.list("variable_types", desc="List of variable types for active language")
 
 setting_private_function_formatter = mod.setting("code_private_function_formatter", str)
 setting_protected_function_formatter = mod.setting(
@@ -60,6 +60,7 @@ extension_lang_map = {
     ".vba": "vba",
     ".vim": "vimscript",
     ".vimrc": "vimscript",
+    ".git": "git"
 }
 
 
@@ -105,6 +106,14 @@ app.register("ready", lambda: actions.user.code_clear_language_mode())
 
 @mod.action_class
 class Actions:
+    def code_initialize_variable(variableType: str, variableName: str):
+        """Initialized new variable with variable type"""
+     
+
+    def code_print():
+        """write print code for language"""
+
+
     def code_set_language_mode(language: str):
         """Sets the active language mode, and disables extension matching"""
         actions.user.code_clear_language_mode()
@@ -122,8 +131,13 @@ class Actions:
     def code_operator_indirection():
         """code_operator_indirection"""
 
-    def kotlin_give_type(type1: str):
-        """Inserts kotlin type """
+    def code_give_type(type1: str):
+        """adds type"""
+        actions.insert(": ")
+        actions.user.insert_formatted(type1, "PUBLIC_CAMEL_CASE")
+    
+    def code_initialized_database_transaction():
+        """adds database transaction code"""
 
     def code_operator_address_of():
         """code_operator_address_of (e.g., C++ & op)"""
@@ -139,6 +153,7 @@ class Actions:
 
     def code_operator_assignment():
         """code_operator_assignment"""
+        actions.insert(" = ")
 
     def code_operator_subtraction():
         """code_operator_subtraction"""
@@ -175,6 +190,7 @@ class Actions:
 
     def code_operator_equal():
         """code_operator_equal"""
+        actions.insert(" == ")
 
     def code_operator_not_equal():
         """code_operator_not_equal"""
@@ -299,6 +315,9 @@ class Actions:
     def code_default_function(text: str):
         """Inserts function declaration"""
         actions.user.code_private_function(text)
+    
+    def code_function_no_body(text: str):
+        """Inserts function with no body"""
 
     def code_private_function(text: str):
         """Inserts private function declaration"""

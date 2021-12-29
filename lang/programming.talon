@@ -1,7 +1,8 @@
 tag: user.code_generic
 -
 block: user.code_block()
-
+# tag(): user.git
+# tag(): terminal
 #todo should we have a keyword list? type list capture? stick with "word"?
 #state in: insert(" in ")
 is not (none|null): user.code_is_not_null()
@@ -39,6 +40,15 @@ state next: user.code_next()
 state true: user.code_true()
 state false: user.code_false()
 
+print: user.code_print()
+state of type <user.text>: user.code_give_type(text)
+
+initialize [{user.variable_types}] variable <user.text> :
+    variableType = variable_types or "no_spoken_type" 
+    user.code_initialize_variable(variableType, text) 
+
+initialize transaction: user.code_initialized_database_transaction()
+
 # show and print functions and libraries
 toggle funk: user.code_toggle_functions()
 funk <user.code_functions>:
@@ -46,7 +56,12 @@ funk <user.code_functions>:
 funk cell <number>:
     user.code_select_function(number - 1, "")
 funk wrap <user.code_functions>:
-    user.code_insert_function(code_functions, edit.selected_text())
+    key('cmd-x')
+    user.code_insert_function(code_functions, "")
+    key('cmd-v')
 funk wrap <number>:
     user.code_select_function(number - 1, edit.selected_text())
 dock string: user.code_document_string()
+
+intellj import: key('alt-shift-enter')
+

@@ -198,6 +198,7 @@ abbreviations = {
     "text": "txt",
     "time of check time of use": "toctou",
     "token": "tok",
+    "transaction": "trx",
     "ultimate": "ulti",
     "unique id": "uuid",
     "user": "usr",

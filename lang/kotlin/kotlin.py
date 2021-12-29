@@ -1,4 +1,4 @@
-from talon import Context, actions
+from talon import Context, actions, settings
 
 ctx = Context()
 ctx.matches = r"""
@@ -8,9 +8,39 @@ and code.language: kotlin
 """
 ctx.tags = ["user.code_operators", "user.code_generic"]
 
+defaultType = "val"
+ctx.lists["user.variable_types"] = {
+    "mutable": "var",
+    "immutable": defaultType,
+}
+
+ctx.lists["user.code_functions"] = {
+    "print": "println",
+}
 
 @ctx.action_class("user")
 class UserActions:
+    def code_initialize_variable(variableType: str, variableName: str):
+        if (variableType == "no_spoken_type"):
+            actions.insert(defaultType)
+        else:
+            actions.insert(variableType)
+        
+        actions.insert(" ")
+        actions.user.insert_formatted(variableName, "PRIVATE_CAMEL_CASE")
+
+    def code_initialized_database_transaction():
+        actions.insert("dbContext.transaction { trx -> }")
+        actions.key("left")
+        actions.key("enter")
+
+    def code_give_type(type1: str):
+        actions.insert(": ")
+        if (type1 == "uuid"):
+            actions.user.insert_formatted(type1, "SNAKE_CASE_CAP")
+        else:
+            actions.user.insert_formatted(type1, "PUBLIC_CAMEL_CASE")
+    
     def code_operator_indirection():
         actions.skip()
 
@@ -153,6 +183,9 @@ class UserActions:
     def code_type_class():
         actions.auto_insert("class ")
 
+    def code_default_function(text: str):
+        actions.user.code_public_function(text)
+
     def code_private_function(text: str):
         actions.insert("private")
 
@@ -160,9 +193,29 @@ class UserActions:
         actions.user.code_private_function()
 
     def code_public_function(text: str):
-        actions.insert("public ")
+        actions.insert("fun ")
+        actions.user.insert_formatted(text, "PRIVATE_CAMEL_CASE")
+        actions.insert("() ")
+        actions.insert("{}")
+        actions.edit.left()
+        actions.key("enter")
+        actions.edit.up()
+        actions.edit.line_end()
+        actions.key("left:3")
+
+    def code_function_no_body(text: str):
+        actions.insert("fun ")
+        actions.user.insert_formatted(text, "PRIVATE_CAMEL_CASE")
+        actions.insert("() = ")
+        actions.key("left:4")
 
     def code_state_return():
         actions.insert("return ")
+
+    def code_insert_function(text: str, selection: str):
+        actions.insert(text)
+        actions.insert('()')
+        actions.key("left")
+
 
 

@@ -1,5 +1,5 @@
 from talon import Module, Context, actions, ui, imgui, settings
-
+from typing import Union
 ctx = Context()
 ctx.matches = r"""
 mode: user.javascript
@@ -12,10 +12,28 @@ and code.language: javascript
 #     "print": "Console.WriteLine",
 #     "string": ".ToString",
 # }
+defaultType = "const"
+ctx.lists["user.variable_types"] = {
+    "mutable": "let",
+    "immutable": defaultType,
+}
 
 
 @ctx.action_class("user")
 class UserActions:
+    def code_initialize_variable(variableType: str, variableName: str):
+        if (variableType == "no_spoken_type"):
+            actions.insert(defaultType)
+        else:
+            actions.insert(variableType)
+        
+        actions.insert(" ")
+        actions.user.insert_formatted(variableName, "PRIVATE_CAMEL_CASE")
+
+    def code_print():
+        actions.insert("console.log()")
+        actions.key("left")
+
     def code_is_not_null():
         actions.auto_insert(" !== null")
 
