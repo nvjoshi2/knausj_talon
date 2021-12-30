@@ -1,8 +1,8 @@
-# tag: terminal
-# and tag: user.git
-mode: user.git
-mode: user.auto_lang
-and code.language: git
+tag: terminal
+and tag: user.git
+# mode: user.git
+# mode: user.auto_lang
+# and code.language: git
 -
 # Standard commands
 git add patch: "git add . -p\n"
@@ -25,7 +25,9 @@ git clone: "git clone "
 # Leave \n out for confirmation since the operation is destructive
 git clean everything: "git clean -dfx"
 git commit message <user.text>: "git commit -m '{text}'"
-git commit: "git commit\n"
+git commit: 
+    insert("git commit -m ''")
+    key("left")
 git diff (colour|color) words: "git diff --color-words "
 git diff: "git diff "
 git diff cached: "git diff --cached\n"

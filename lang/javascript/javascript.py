@@ -7,11 +7,11 @@ mode: user.auto_lang
 and code.language: javascript
 """
 # tbd
-# ctx.lists["user.code_functions"] = {
-#     "integer": "int.TryParse",
-#     "print": "Console.WriteLine",
-#     "string": ".ToString",
-# }
+ctx.lists["user.code_functions"] = {
+    "integer": "int.TryParse",
+    "print": "console.log",
+    "string": ".ToString",
+}
 defaultType = "const"
 ctx.lists["user.variable_types"] = {
     "mutable": "let",

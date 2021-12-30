@@ -1,8 +1,8 @@
 tag: user.code_generic
 -
 block: user.code_block()
-# tag(): user.git
-# tag(): terminal
+tag(): user.git
+tag(): terminal
 #todo should we have a keyword list? type list capture? stick with "word"?
 #state in: insert(" in ")
 is not (none|null): user.code_is_not_null()
