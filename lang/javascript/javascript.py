@@ -299,3 +299,9 @@ class UserActions:
 
     #     actions.user.code_insert_function(result, None)
 
+
+    def code_lambda_function():
+        result = "() => {}"
+
+        actions.insert(result)
+        actions.key("left")

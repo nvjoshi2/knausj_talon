@@ -10,6 +10,26 @@ touch:
 	# Touch automatically ends left drags so this is for right drags specifically
 	user.mouse_drag_end()
 
+copy touch: 
+	mouse_click(0)
+	mouse_click(0)
+	edit.copy()
+	# close the mouse grid if open
+	user.grid_close()
+		# End any open drags
+	# Touch automatically ends left drags so this is for right drags specifically
+	user.mouse_drag_end()
+
+paste touch: 
+	mouse_click(0)
+	mouse_click(0)
+	edit.paste()
+	# close the mouse grid if open
+	user.grid_close()
+		# End any open drags
+	# Touch automatically ends left drags so this is for right drags specifically
+	user.mouse_drag_end()
+
 righty:
 	mouse_click(1)
 	# close the mouse grid if open
@@ -68,10 +88,12 @@ wheel tiny [down]: mouse_scroll(20)
 wheel tiny [down] here:
     user.mouse_move_center_active_window()
     mouse_scroll(20)
-wheel downer: user.mouse_scroll_down_continuous()
-wheel downer here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_down_continuous()
+wheel downer slow: user.mouse_scroll_down_continuous(20)
+wheel downer: user.mouse_scroll_down_continuous(40)
+wheel downer fast: user.mouse_scroll_down_continuous(80)
+# wheel downer here:
+#     user.mouse_move_center_active_window()
+#     user.mouse_scroll_down_continuous()
 wheel up: user.mouse_scroll_up()
 wheel up here:
  user.mouse_scroll_up()
@@ -79,10 +101,12 @@ wheel tiny up: mouse_scroll(-20)
 wheel tiny up here:
     user.mouse_move_center_active_window()
     mouse_scroll(-20)
-wheel upper: user.mouse_scroll_up_continuous()
-wheel upper here:
-    user.mouse_move_center_active_window()
-    user.mouse_scroll_up_continuous()
+wheel upper slow: user.mouse_scroll_up_continuous(20)
+wheel upper: user.mouse_scroll_up_continuous(40)
+wheel upper fast: user.mouse_scroll_up_continuous(80)
+# wheel upper here:
+#     user.mouse_move_center_active_window()
+#     user.mouse_scroll_up_continuous()
 wheel gaze: user.mouse_gaze_scroll()
 wheel gaze here:
     user.mouse_move_center_active_window()
@@ -91,7 +115,9 @@ wheel stop: user.mouse_scroll_stop()
 wheel stop here:
     user.mouse_move_center_active_window()
     user.mouse_scroll_stop()
-wheel left: mouse_scroll(0, -40)
+wheel left: mouse_scroll(0, -80)
+wheel left small: mouse_scroll(0, -40)
+wheel left big: mouse_scroll(0, -120)
 wheel left here:
     user.mouse_move_center_active_window()
     mouse_scroll(0, -40)
@@ -99,7 +125,10 @@ wheel tiny left: mouse_scroll(0, -20)
 wheel tiny left here:
     user.mouse_move_center_active_window()
     mouse_scroll(0, -20)
-wheel right: mouse_scroll(0, 40)
+wheel right: mouse_scroll(0, 80)
+wheel right tiny: mouse_scroll(0, 20)
+wheel right small: mouse_scroll(0, 40)
+wheel right big: mouse_scroll(0, 120)
 wheel right here:
     user.mouse_move_center_active_window()
     mouse_scroll(0, 40)

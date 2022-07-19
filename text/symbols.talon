@@ -3,6 +3,8 @@ question [mark]: "?"
 double dash: "--"
 (bracket | brack | left bracket): "{"
 (rbrack | are bracket | right bracket): "}"
+(carrot | left carrot): "<"
+(rcarrot | are carrot | right carrot): ">"
 triple quote: "'''"
 (triple grave | triple back tick | gravy):
     insert("```")
@@ -38,6 +40,9 @@ inside (squares | square brackets | list):
 inside (bracket | braces):
 	insert("{}")
 	key(left)
+inside (carrots):
+    insert("<>")
+    key(left)
 inside percent:
 	insert("%%")
 	key(left)

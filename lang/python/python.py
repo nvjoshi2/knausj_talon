@@ -226,6 +226,89 @@ class UserActions:
             text = text + "()"
         actions.user.paste(text)
         actions.edit.left()
+    
+
+    def code_refactor_create_task(selection: str):
+        start = 'asyncio.create_task('
+        end = ')'
+        function_call = selection[selection.find(start)+len(start):selection.rfind(end)]
+
+        actions.user.paste(f"await {function_call}")
+
+
+    def code_refactor_index(type: str, selection: str):
+        selection = selection.lower()
+        if type == 'create':
+            #get database
+            start = '('
+            end = ', \"'
+            database = selection[selection.find(start)+len(start):selection.rfind(end)]
+
+            #get query
+            start = '\"'
+            end = '\"'
+            query = selection[selection.find(start)+len(start):selection.rfind(end)]
+
+            #get index_name
+            start = 'create index if not exists '
+            end = ' on '
+            index_name = query[query.find(start)+len(start):query.rfind(end)]
+
+            #get table_name
+            start = ' on '
+            end = '('
+            table_name = query[query.find(start)+len(start):query.rfind(end)]
+
+            #get index_columns
+            start = '('
+            end = ')'
+            index_columns_string = query[query.find(start)+len(start):query.rfind(end)]
+            index_columns = map(lambda s: f"'{s.strip()}'", index_columns_string.split(','))
+
+            #get condition
+            condition = query.split('where')[-1]
+
+            to_insert = f"({database}, '{index_name}', '{table_name}', [{', '.join(index_columns)}]"
+            if len(condition) < len(query):
+                to_insert = to_insert + f", '{condition.strip()}')"
+            else:
+                to_insert = to_insert + ")"
+            
+            actions.user.paste(to_insert)
+        
+        # elif type == 'drop':
+
+    def code_refactor_query(selection: str):
+        
+        lines = list(map(lambda line: line.strip(), selection.split("\n")))
+
+        to_insert = ''
+        if len(lines) > 1:
+            to_insert += "{\n"
+            for i in range(1, len(lines) - 1):
+                line = lines[i].strip() # remove leading/trailing white spaces
+                if line:
+                    print(line)
+                    to_insert += ('  "": ' + line + '\n')
+            to_insert+= "}"
+        
+        else:
+            line = lines[0].strip()
+            line = line[1:-1]
+            fields = line.split(',')
+            fields = list(filter(lambda field: field != '' and field != ' ', fields))
+            to_insert += '{'
+            for i in range(len(fields)):
+                field = fields[i]
+                if field:
+                    if i == len(fields) - 1:
+                        to_insert += ('"": ' + field) 
+                    else:
+                        to_insert += ('"": ' + field + ', ') 
+            to_insert += '}'
+        
+        actions.user.paste(to_insert)
+
 
     def code_default_function(text: str):
         actions.user.code_public_function(text)

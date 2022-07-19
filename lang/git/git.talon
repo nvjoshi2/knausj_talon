@@ -1,5 +1,5 @@
-tag: terminal
-and tag: user.git
+# tag: terminal
+# and tag: user.git
 # mode: user.git
 # mode: user.auto_lang
 # and code.language: git

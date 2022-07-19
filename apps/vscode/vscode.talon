@@ -190,6 +190,12 @@ restore: user.vscode("workbench.action.evenEditorWidths")
 replace here:
     user.replace("")
     key(cmd-alt-l)
+
+new cursor:
+    key(cmd-alt-down)
+
+go deaf:
+    key(f12)
     
 hover show: user.vscode("editor.action.showHover")
 

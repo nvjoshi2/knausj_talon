@@ -52,3 +52,6 @@ op mod equals: user.code_operator_modulo_assignment()
 
 #tbd
 (op | pad) colon: " : "
+
+#phonetic operators
+op await: " await "

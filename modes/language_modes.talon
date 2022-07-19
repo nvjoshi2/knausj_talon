@@ -1,3 +1,4 @@
+^force dart$: user.code_set_language_mode("dart")
 ^force see sharp$: user.code_set_language_mode("csharp")
 ^force see plus plus$: user.code_set_language_mode("cplusplus")
 ^force go (lang|language)$: user.code_set_language_mode("go")

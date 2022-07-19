@@ -4,6 +4,7 @@ settings():
     imgui.scale = 1.3
 
     # minimum silence time (in seconds) before speech is cut off, default 0.3
+    speech.timeout = 0.35
 
     # Enable if you'd like the picker gui to automatically appear when explorer has focus
     user.file_manager_auto_show_pickers = 0
@@ -15,7 +16,7 @@ settings():
     user.help_max_contexts_per_page = 20
 
     # The default amount used when scrolling continuously
-    user.mouse_continuous_scroll_amount = 80
+    user.mouse_continuous_scroll_amount = 40
 
     # Stop continuous scroll/gaze scroll with a pop
     user.mouse_enable_pop_stops_scroll = 1

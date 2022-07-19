@@ -36,3 +36,6 @@ comment <user.text>$:
 	edit.line_end()
    	user.code_comment()
     insert(user.text)
+
+comment block:
+    key('cmd-/')

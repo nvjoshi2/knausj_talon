@@ -29,3 +29,6 @@ class Actions:
 
     def terminal_kill_all():
         """kills the running command"""
+    
+    def terminal_remove_directory():
+        """recursively deletes directory"""

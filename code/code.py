@@ -35,6 +35,7 @@ extension_lang_map = {
     ".cmake": "cmake",
     ".cpp": "cplusplus",
     ".cs": "csharp",
+    ".dart": "dart",
     ".gdb": "gdb",
     ".go": "go",
     ".h": "c",
@@ -106,9 +107,44 @@ app.register("ready", lambda: actions.user.code_clear_language_mode())
 
 @mod.action_class
 class Actions:
+    def define_widget(widget_name:str, widget_type: str):
+        """class WidgetName extends WidgetType"""
+    def constructor_call_named_field(field: str):
+        """Constructor(field: )"""
+
+    def type_variable(type: str, variable_name: str):
+        """String helloThere"""
+
+    def format_and_insert_type(type: str):
+        """bool vs String"""
+
     def code_initialize_variable(variableType: str, variableName: str):
         """Initialized new variable with variable type"""
-     
+
+    def code_define_list(innerType: str):
+        """List<InnerType>"""
+
+    def code_define_future(innerType: str):
+        """Future<InnerType>"""
+
+    def localize_text():
+        """dart localization"""
+
+    def format_named_arguments():
+        """format things like Coin(relativeLockHeight: relativeLockHeight, launcherId: launcherId) to be multiline"""
+    
+    def code_typed_function(functionName: str, returnType: str):
+        """Type functionName() {}"""
+
+    def code_typed_arrow_function(functionName: str, returnType: str):
+        """Type functionName() =>"""
+        
+    def code_define_class(text: str):
+        """makes new class"""
+        actions.insert('class ')
+        actions.user.insert_formatted(text, "PUBLIC_CAMEL_CASE")
+        actions.insert(' {')
+        actions.key('enter')
 
     def code_print():
         """write print code for language"""
@@ -130,6 +166,12 @@ class Actions:
 
     def code_operator_indirection():
         """code_operator_indirection"""
+
+    def self_dot(text: str):
+        """.textCamelCase"""
+
+    def code_call_function(text: str):
+        """calledFunction()"""
 
     def code_give_type(type1: str):
         """adds type"""
@@ -337,6 +379,9 @@ class Actions:
     def code_public_static_function(text: str):
         """Inserts public function"""
 
+    def code_lambda_function():
+        """Inserts lambda function"""
+
     def code_private_function_formatter(name: str):
         """Inserts private function name with formatter"""
         actions.insert(
@@ -445,6 +490,15 @@ class Actions:
 
     def code_insert_function(text: str, selection: str):
         """Inserts a function and positions the cursor appropriately"""
+
+    def code_refactor_index(type: str, selection: str):
+        """refactoring drop and create index for  chia"""
+
+    def code_refactor_create_task(selection: str):
+        """refactoring asyncio.create_task for  chia"""
+    
+    def code_refactor_query(selection: str):
+        """refactoring query params for  chia"""
 
     def code_toggle_libraries():
         """GUI: List libraries for active language"""

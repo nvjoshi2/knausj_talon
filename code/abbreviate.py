@@ -31,6 +31,7 @@ abbreviations = {
     "british columbia": "bc",
     "button": "btn",
     "canada": "ca",
+    "connection": "conn",
     "centimeter": "cm",
     "char": "chr",
     "character": "char",

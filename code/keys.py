@@ -155,7 +155,7 @@ punctuation_words = {
 }
 symbol_key_words = {
     "dot": ".",
-    "point": ".",
+    # "point": ".",
     "quote": "'",
     "apostrophe": "'",
     "L square": "[",
@@ -192,7 +192,6 @@ symbol_key_words = {
     "greater than": ">",
     "star": "*",
     "pound": "#",
-    "hash": "#",
     "percent": "%",
     "caret": "^",
     "amper": "&",
