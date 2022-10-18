@@ -34,11 +34,13 @@ new widget <user.text>:
     user.define_widget(text, 'StatelessWidget')
 
 
-construct field: 'required this'
+construct field: 'required this.'
 
 list of <user.text>: user.code_define_list(text)
 future of <user.text>: user.code_define_future(text)
 variable <user.text> of type <user.text>$:user.type_variable(text_2, text_1)
+class variable <user.text> of type <user.text>$:user.initialize_type_variable(text_2, text_1)
+
 type <user.text> $: user.format_and_insert_type(text)
 
 ^funky <user.text>$: user.code_public_function(text)
@@ -47,6 +49,15 @@ type <user.text> $: user.format_and_insert_type(text)
 
 make local: user.localize_text()
 
+json object: 'Map<String, dynamic>'
+
 app localizations: 'AppLocalizations.of(context)!'
 
 make from jason: '.fromJson(Map<String, dynamic> json)'
+
+make to json: 
+    insert('Map<String, dynamic> toJson() => <String, dynamic>{')
+    key('enter')
+
+(wrap | rap) future: user.wrap_future()
+

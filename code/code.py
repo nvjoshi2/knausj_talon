@@ -115,6 +115,12 @@ class Actions:
     def type_variable(type: str, variable_name: str):
         """String helloThere"""
 
+    def initialize_type_variable(type: str, variable_name: str):
+        """final String helloThere"""
+    
+    def wrap_future():
+        """Wraps selection in dart Future"""
+
     def format_and_insert_type(type: str):
         """bool vs String"""
 

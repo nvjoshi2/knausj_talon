@@ -1,4 +1,4 @@
-pop: key('backspace')
+crack: key('backspace')
 mummy: key('enter')
 dad: key('space')
 

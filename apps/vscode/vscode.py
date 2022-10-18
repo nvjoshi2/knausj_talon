@@ -136,6 +136,17 @@ class Actions:
         """Show command palette"""
         actions.key("ctrl-shift-p")
 
+    def show_files():
+        """show files"""
+        actions.key('cmd-p')
+    
+    def show_fields():
+        """Shows fields for object creation (might be specific to dart)"""
+        actions.key('ctrl-space')
+    def show_widget_options():
+        """shows widget options in flutter"""
+        actions.key('cmd-.')
+
 
 @mac_ctx.action_class("user")
 class MacUserActions:

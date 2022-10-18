@@ -25,8 +25,11 @@ ctx.lists["user.code_functions"] = {
 @ctx.action_class("user")
 class UserActions:
     def format_and_insert_type(type: str):
-        if type in ['int', 'bool']:
-            actions.insert(type)
+        if type in ['int', 'bool', 'void', 'double', 'number', 'dynamic']:
+            if(type == 'number'):
+                actions.insert('num')
+            else:
+                actions.insert(type)
         else:
             actions.user.insert_formatted(type, "PUBLIC_CAMEL_CASE")
     
@@ -51,6 +54,16 @@ class UserActions:
         actions.insert(" ")
         actions.user.insert_formatted(variable_name, "PRIVATE_CAMEL_CASE")
 
+    def initialize_type_variable(type: str, variable_name: str):
+        actions.insert("final ")
+        UserActions.format_and_insert_type(type)
+        actions.insert(" ")
+        actions.user.insert_formatted(variable_name, "PRIVATE_CAMEL_CASE")
+
+    def wrap_future():
+        actions.insert("<")
+        actions.key("left:2")
+        actions.insert('Future')
 
     def code_operator_structure_dereference():
         actions.insert(' => ')

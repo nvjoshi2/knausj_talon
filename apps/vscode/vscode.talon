@@ -215,3 +215,9 @@ cell run above: user.vscode("jupyter.runallcellsabove.palette")
 cell run: user.vscode("jupyter.runcurrentcell")
 
 install local: user.vscode("workbench.extensions.action.installVSIX")
+
+
+# coding
+show files: user.show_files()
+show fields: user.show_fields()
+widget options: user.show_widget_options()
