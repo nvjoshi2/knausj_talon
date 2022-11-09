@@ -61,3 +61,35 @@ make to json:
 
 (wrap | rap) future: user.wrap_future()
 
+state null return: 'return null;'
+
+new provider: 'Provider((ref) {},);'
+new family provider: 'Provider.family((ref, arg) {},);'
+
+state try catch: 
+    insert('try {}')
+    key('left')
+    key('enter')
+    key('down')
+    insert('on Exception catch(e) {}')
+    key('left')
+    key('enter')
+    key('enter')
+    key('up')
+
+logging error: 
+    insert('LoggingContext().error()')
+    key('left')
+
+logging info: 
+    insert('LoggingContext().info()')
+    key('left')
+
+make to do: '// TODO(nvjoshi2): '
+
+^lambda funky: user.code_lambda_function()
+async lambda funky: 
+    insert("() async {}")
+    key("left")
+    key("enter")
+

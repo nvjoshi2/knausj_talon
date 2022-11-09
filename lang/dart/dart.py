@@ -248,14 +248,32 @@ class UserActions:
         actions.auto_insert(" != null")
 
     def code_state_if():
+        actions.insert("if ()")
+        actions.key("left")
+
+    def code_state_if_block():
         actions.insert("if () {}")
-        actions.key("left:4")
+        actions.key("left")
+        actions.key("enter")
+        actions.key("up")
+        actions.key("right:2")
+
+    def code_state_else_if_block():
+        actions.insert("else if () {}")
+        actions.key("left")
+        actions.key("enter")
+        actions.key("up")
+        actions.key("right:7")
+
 
     def code_state_else_if():
-        actions.insert("else if () {}")
-        actions.key("left:4")
+        actions.insert("else if ()")
+        actions.key("left")
 
     def code_state_else():
+        actions.insert("else")
+
+    def code_state_else_block():
         actions.insert("else {}")
         actions.key("left")
         actions.key("enter")
@@ -332,6 +350,13 @@ class UserActions:
         actions.insert(text)
         actions.insert('()')
         actions.key("left")
+    
+    def code_lambda_function():
+        result = "() {}"
+
+        actions.insert(result)
+        actions.key("left")
+        actions.key("enter")
 
 
 

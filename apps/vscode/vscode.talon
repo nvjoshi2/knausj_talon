@@ -221,3 +221,8 @@ install local: user.vscode("workbench.extensions.action.installVSIX")
 show files: user.show_files()
 show fields: user.show_fields()
 widget options: user.show_widget_options()
+
+async block:
+    insert('async {}')
+    key('left')
+    key('enter')

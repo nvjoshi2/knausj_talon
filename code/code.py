@@ -314,12 +314,18 @@ class Actions:
 
     def code_state_if():
         """Inserts if statement"""
+    def code_state_if_block():
+        """Inserts if statement with block"""
 
     def code_state_else_if():
         """Inserts else if statement"""
+    def code_state_else_if_block():
+        """Inserts else if statement with block"""
 
     def code_state_else():
         """Inserts else statement"""
+    def code_state_else_block():
+        """Inserts else statement with block"""
 
     def code_state_do():
         """Inserts do statement"""
