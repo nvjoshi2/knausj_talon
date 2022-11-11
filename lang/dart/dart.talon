@@ -93,3 +93,10 @@ async lambda funky:
     key("left")
     key("enter")
 
+state indexed for: 
+    insert('for(var i = 0; i< X; i++){}')
+    key("left")
+    key("enter")
+
+state const: 'const '
+

@@ -127,6 +127,9 @@ class Actions:
     def code_initialize_variable(variableType: str, variableName: str):
         """Initialized new variable with variable type"""
 
+    def code_construct_object(objectType: str, className: str):
+        """construct new object"""
+
     def code_define_list(innerType: str):
         """List<InnerType>"""
 

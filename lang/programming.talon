@@ -52,6 +52,10 @@ new [{user.variable_types}] variable <user.text> :
     variableType = variable_types or "no_spoken_type" 
     user.code_initialize_variable(variableType, text) 
 
+construct [{user.variable_types}] object <user.text> :
+    variableType = variable_types or "no_spoken_type" 
+    user.code_construct_object(variableType, text) 
+
 new class <user.text>:
     user.code_define_class(text)
 

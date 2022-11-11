@@ -1,3 +1,4 @@
+import time
 from talon import Context, actions, settings, clip
 import re
 
@@ -14,6 +15,7 @@ defaultType = "final"
 ctx.lists["user.variable_types"] = {
     "mutable": "var",
     "immutable": defaultType,
+    "constant": 'const',
 }
 
 ctx.lists["user.code_functions"] = {
@@ -73,7 +75,8 @@ class UserActions:
 
     def format_named_arguments():
         #  final escapingInnerPuzzle = createWaitingRoomInnerPuzzle(delayTime: delayTime, delayPuzzlehash: delayPuzzlehash)
-        selected_text = actions.edit.selected_text()            
+        selected_text = actions.edit.selected_text()    
+
     
     def localize_text():
         text_raw = clip.get()
@@ -121,6 +124,15 @@ class UserActions:
         
         actions.insert(" ")
         actions.user.insert_formatted(variableName, "PRIVATE_CAMEL_CASE")
+
+    def code_construct_object(objectType: str, className: str):
+        if (objectType != "no_spoken_type"):
+            actions.insert(objectType)
+            actions.insert(" ")
+        
+        actions.user.insert_formatted(className, "PUBLIC_CAMEL_CASE")
+        actions.insert("()")
+        actions.key('left')
 
     def code_call_function(text: str):
         actions.user.insert_formatted(text, "PRIVATE_CAMEL_CASE")
