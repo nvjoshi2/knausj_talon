@@ -18,11 +18,10 @@ watch ref:
     insert('ref.watch()')
     key('left')
 
-named field <user.text>: user.constructor_call_named_field(text)
 
-color theme: 'Theme.of(context).colorScheme'
+state color theme: 'Theme.of(context).colorScheme'
 
-text theme: 'Theme.of(context).textTheme'
+state text theme: 'Theme.of(context).textTheme'
 
 new consumer widget <user.text>:
     user.define_widget(text, 'ConsumerWidget')
@@ -36,8 +35,6 @@ new widget <user.text>:
 
 construct field: 'required this.'
 
-list of <user.text>: user.code_define_list(text)
-future of <user.text>: user.code_define_future(text)
 variable <user.text> of type <user.text>$:user.type_variable(text_2, text_1)
 class variable <user.text> of type <user.text>$:user.initialize_type_variable(text_2, text_1)
 
@@ -59,7 +56,9 @@ make to json:
     insert('Map<String, dynamic> toJson() => <String, dynamic>{')
     key('enter')
 
-(wrap | rap) future: user.wrap_future()
+# [{user.data_structure_types}] of <user.text> : user.define_data_structure(data_structure_types, text)
+
+(wrap | rap) [{user.data_structure_types}]: user.wrap_with_data_structure(data_structure_types)
 
 state null return: 'return null;'
 
@@ -100,3 +99,28 @@ state indexed for:
 
 state const: 'const '
 
+state use state: 
+    insert('useState()')
+    key("left")
+
+state for block: 
+    insert('for () {}')
+    key("left")
+    key("enter")
+    key('up')
+    key("right:3")
+
+
+state use memoized: 
+    insert('useMemoized()')
+    key("left")
+
+state async when: ".when(data: (data) {},error: (error, stackTrace) => const DefaultError(message: '',),loading: DefaultLoading.new,)"
+
+import flutter hooks: "import 'package:flutter_hooks/flutter_hooks.dart';"
+
+interpolate string: 
+    insert('${}')
+    key("left")
+
+state sleep: 'await Future<void>.delayed(const Duration(seconds: ))'

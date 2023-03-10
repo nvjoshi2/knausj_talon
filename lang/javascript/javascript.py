@@ -30,6 +30,11 @@ class UserActions:
         actions.insert(" ")
         actions.user.insert_formatted(variableName, "PRIVATE_CAMEL_CASE")
 
+    def code_call_function(text: str):
+        actions.user.insert_formatted(text, "PRIVATE_CAMEL_CASE")
+        actions.insert('()')
+        actions.key('left')
+
     def code_print():
         actions.insert("console.log()")
         actions.key("left")

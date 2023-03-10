@@ -7,15 +7,58 @@ mode: user.auto_lang
 and code.language: typescript
 """
 # tbd
-# ctx.lists["user.code_functions"] = {
-#     "integer": "int.TryParse",
-#     "print": "Console.WriteLine",
-#     "string": ".ToString",
-# }
+ctx.lists["user.code_functions"] = {
+    "integer": "int.TryParse",
+    "print": "console.log",
+    "string": ".ToString",
+}
+defaultType = "const"
+ctx.lists["user.variable_types"] = {
+    "mutable": "let",
+    "immutable": defaultType,
+}
 
 
 @ctx.action_class("user")
 class UserActions:
+    def format_and_insert_type(type: str):
+        if type in ['bool','boolean', 'number', 'undefined', 'string', ]:
+            if(type == 'bool'):
+                actions.insert('boolean')
+            else:
+                actions.insert(type)
+        else:
+            actions.user.insert_formatted(type, "PUBLIC_CAMEL_CASE")
+            
+    def type_variable(type: str, variable_name: str):
+        actions.user.insert_formatted(variable_name, "PRIVATE_CAMEL_CASE")
+        actions.insert(": ")
+        UserActions.format_and_insert_type(type)
+
+    def code_give_type(type1: str):
+        actions.insert(": ")
+        UserActions.format_and_insert_type(type1)
+    
+    def code_define_list(innerType: str):
+        actions.insert('Array<')
+        UserActions.format_and_insert_type(innerType)       
+        actions.insert('>')
+
+    def constructor_call_named_field(field: str):
+        actions.user.insert_formatted(field, "PRIVATE_CAMEL_CASE")
+        actions.insert(": ")
+
+
+
+    def code_initialize_variable(variableType: str, variableName: str):
+        if (variableType == "no_spoken_type"):
+            actions.insert(defaultType)
+        else:
+            actions.insert(variableType)
+        
+        actions.insert(" ")
+        actions.user.insert_formatted(variableName, "PRIVATE_CAMEL_CASE")
+        
     def code_is_not_null():
         actions.auto_insert(" !== null")
 
@@ -274,6 +317,12 @@ class UserActions:
         )
 
         actions.user.code_insert_function(result, None)
+
+    def code_call_function(text: str):
+        actions.user.insert_formatted(text, "PRIVATE_CAMEL_CASE")
+        actions.insert('()')
+        actions.key('left')
+
 
     # def code_public_static_function(text: str):
     #     result = "public static void {}".format(

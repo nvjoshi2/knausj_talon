@@ -216,6 +216,7 @@ cell run: user.vscode("jupyter.runcurrentcell")
 
 install local: user.vscode("workbench.extensions.action.installVSIX")
 
+command palette: user.command_palette()
 
 # coding
 show files: user.show_files()
@@ -226,3 +227,10 @@ async block:
     insert('async {}')
     key('left')
     key('enter')
+
+
+install package: 'npm install '
+
+node ex: 'npx '
+
+comment: key('cmd+/')

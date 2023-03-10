@@ -5,6 +5,7 @@ mod.list("code_functions", desc="List of functions for active language")
 mod.list("code_types", desc="List of types for active language")
 mod.list("code_libraries", desc="List of libraries for active language")
 mod.list("variable_types", desc="List of variable types for active language")
+mod.list("data_structure_types", desc="List of data structure types for active language")
 
 setting_private_function_formatter = mod.setting("code_private_function_formatter", str)
 setting_protected_function_formatter = mod.setting(
@@ -118,8 +119,8 @@ class Actions:
     def initialize_type_variable(type: str, variable_name: str):
         """final String helloThere"""
     
-    def wrap_future():
-        """Wraps selection in dart Future"""
+    def wrap_with_data_structure(dataStructureType: str):
+        """Wraps selection in data structure type"""
 
     def format_and_insert_type(type: str):
         """bool vs String"""
@@ -127,14 +128,14 @@ class Actions:
     def code_initialize_variable(variableType: str, variableName: str):
         """Initialized new variable with variable type"""
 
+    def define_data_structure(dataStructureType: str, innerType: str):
+        """define new data strucutre with inner type"""
+
+    def initialize_empty_data_structure(dataStructureType: str, innerType: str):
+        """initialize new empty strucutre with inner type"""
+
     def code_construct_object(objectType: str, className: str):
         """construct new object"""
-
-    def code_define_list(innerType: str):
-        """List<InnerType>"""
-
-    def code_define_future(innerType: str):
-        """Future<InnerType>"""
 
     def localize_text():
         """dart localization"""

@@ -56,6 +56,11 @@ construct [{user.variable_types}] object <user.text> :
     variableType = variable_types or "no_spoken_type" 
     user.code_construct_object(variableType, text) 
 
+[{user.data_structure_types}] of <user.text> : user.define_data_structure(data_structure_types, text)
+
+initialize [{user.data_structure_types}] of <user.text> : user.initialize_empty_data_structure(data_structure_types, text)
+
+
 new class <user.text>:
     user.code_define_class(text)
 
@@ -97,3 +102,4 @@ dock string: user.code_document_string()
 
 intellj import: key('alt-shift-enter') 
 
+named field <user.text>: user.constructor_call_named_field(text)

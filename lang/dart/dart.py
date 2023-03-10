@@ -18,6 +18,20 @@ ctx.lists["user.variable_types"] = {
     "constant": 'const',
 }
 
+ctx.lists["user.data_structure_types"] = {
+    "list": "List",
+    "set": "Set",
+    "future": 'Future',
+    "map":'Map',
+}
+
+
+data_structure_type_to_empty = {
+    "List":'[]',
+    "Set":"{}",
+    "Map":'{}',
+}
+
 ctx.lists["user.code_functions"] = {
     "print": "print",
 }
@@ -62,10 +76,10 @@ class UserActions:
         actions.insert(" ")
         actions.user.insert_formatted(variable_name, "PRIVATE_CAMEL_CASE")
 
-    def wrap_future():
+    def wrap_with_data_structure(dataStructureType: str):
         actions.insert("<")
         actions.key("left:2")
-        actions.insert('Future')
+        actions.insert(dataStructureType)
 
     def code_operator_structure_dereference():
         actions.insert(' => ')
@@ -106,15 +120,18 @@ class UserActions:
 
         actions.insert(f'"{formatted}": "{text_no_quotes}"')
 
-    def code_define_list(innerType: str):
-        actions.insert('List<')
+    def define_data_structure(dataStructureType: str, innerType: str):
+        actions.insert(dataStructureType)
+        actions.insert('<')
         UserActions.format_and_insert_type(innerType)       
         actions.insert('>')
 
-    def code_define_future(innerType: str):
-        actions.insert('Future<')
+    def initialize_empty_data_structure(dataStructureType: str, innerType: str):
+        actions.insert('<')
         UserActions.format_and_insert_type(innerType)       
         actions.insert('>')
+        actions.insert(f'{data_structure_type_to_empty[dataStructureType]};')
+
 
     def code_initialize_variable(variableType: str, variableName: str):
         if (variableType == "no_spoken_type"):

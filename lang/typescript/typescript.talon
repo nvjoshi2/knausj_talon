@@ -44,3 +44,7 @@ state spread: "..."
 ^funky <user.text>$: user.code_default_function(text)
 ^pro funky <user.text>$: user.code_protected_function(text)
 ^pub funky <user.text>$: user.code_public_function(text)
+
+variable <user.text> of type <user.text>$:user.type_variable(text_2, text_1)
+
+
